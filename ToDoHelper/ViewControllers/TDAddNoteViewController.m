@@ -53,8 +53,15 @@ NSString * const    kExportSegueIdentifier = @"export note segue";
 {
     if ([[segue identifier] isEqualToString:kExportSegueIdentifier]) {
         TDDropBoxViewController *destinationVC = [segue destinationViewController];
-        NSLog(@"setting text as: %@", self.textView.text);
-        [destinationVC setNotePayload:self.textView.text];
+        if (self.textView.text) {
+            NSLog(@"setting text as: %@", self.textView.text);
+            [destinationVC setNotePayload:self.textView.text];
+        }
+        else {
+            //  set payload as a single space
+            [destinationVC setNotePayload:@" "];
+        }
+        
     }
 }
 
