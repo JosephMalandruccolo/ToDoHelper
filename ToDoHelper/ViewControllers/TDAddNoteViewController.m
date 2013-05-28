@@ -8,6 +8,7 @@
 
 
 NSString * const    kExportSegueIdentifier = @"export note segue";
+NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 
 
 
@@ -61,14 +62,23 @@ NSString * const    kExportSegueIdentifier = @"export note segue";
             //  set payload as a single space
             [destinationVC setNotePayload:@" "];
         }
-        
+    }
+    else if ([[segue identifier] isEqualToString:kViewAllNotesSegueIdentifier]) {
+        //  do nothing
     }
 }
 
 
+#pragma mark - unwind segues
 - (IBAction)didFinishInterfacingWithDropBox:(UIStoryboardSegue*)segue
 {
     //  do nothing
+}
+
+
+- (IBAction)didSelectNoteToView:(UIStoryboardSegue*)sender
+{
+    //  grab the text from the note and allow the user to edit
 }
 
 

@@ -6,21 +6,36 @@
 //  Copyright (c) 2013 Joseph Malandruccolo. All rights reserved.
 //
 
+
+NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
+
+
 #import "TDMyNotesViewController.h"
 
 @interface TDMyNotesViewController ()
+
+@property (nonatomic, retain) DBFilesystem *filesystem;
+@property (nonatomic, retain) DBPath *root;
+@property (nonatomic, retain) NSMutableArray *contents;
+@property (nonatomic, assign) BOOL creatingFolder;
+@property (nonatomic, retain) DBPath *fromPath;
+@property (nonatomic, retain) UITableViewCell *loadingCell;
+@property (nonatomic, assign) BOOL loadingFiles;
+@property (nonatomic, assign, getter=isMoving) BOOL moving;
 
 @end
 
 @implementation TDMyNotesViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+
+#pragma mark - life cycle
+- (id)initWithFilesystem:(DBFilesystem *)filesystem root:(DBPath *)root {
+	if ((self = [super init])) {
+		self.filesystem = filesystem;
+		self.root = root;
+		self.navigationItem.title = [root isEqual:[DBPath root]] ? @"Dropbox" : [root name];
+	}
+	return self;
 }
 
 - (void)viewDidLoad
@@ -34,11 +49,22 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+    
+	__weak TDMyNotesViewController *weakSelf = self;
+	[_filesystem addObserver:self block:^() { [weakSelf reload]; }];
+	[_filesystem addObserver:self forPathAndChildren:self.root block:^() { [weakSelf loadFiles]; }];
+	[self.navigationController setToolbarHidden:NO];
+	[self loadFiles];
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	[_filesystem removeObserver:self];
+}
+
 
 #pragma mark - Table view data source
 
@@ -117,5 +143,33 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
+
+
+#pragma mark - private helpers
+- (void)reload
+{
+	[self.tableView reloadData];
+}
+
+- (void)loadFiles {
+	if (_loadingFiles) return;
+	_loadingFiles = YES;
+    
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^() {
+		NSArray *immContents = [_filesystem listFolder:_root error:nil];
+		NSMutableArray *mContents = [NSMutableArray arrayWithArray:immContents];
+		[mContents sortUsingFunction:sortFileInfos context:NULL];
+		dispatch_async(dispatch_get_main_queue(), ^() {
+			self.contents = mContents;
+			_loadingFiles = NO;
+			[self reload];
+		});
+	});
+}
+
+NSInteger sortFileInfos(id obj1, id obj2, void *ctx) {
+	return [[obj1 path] compare:[obj2 path]];
+}
+
 
 @end
