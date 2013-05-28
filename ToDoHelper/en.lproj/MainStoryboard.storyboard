@@ -70,9 +70,10 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okd-bq-csq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Okd-bq-csq">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="262" id="aJt-KA-LEj"/>
+                                    <constraint firstAttribute="height" constant="44" id="qRU-mO-6tV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Link with DropBox">
@@ -83,9 +84,12 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sqd-ZJ-zrT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sqd-ZJ-zrT">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="uw2-BW-NLr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Save to DropBox">
+                                <state key="normal" title="Save to Dropbox">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -93,7 +97,10 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcR-ar-PO0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcR-ar-PO0">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="b3e-4q-exg"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Cancel">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -106,7 +113,10 @@
                                     <segue destination="fX7-Zo-h7F" kind="unwind" unwindAction="didFinishInterfacingWithDropBox:" id="MHq-pL-wji"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kX-lM-uKU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kX-lM-uKU">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Z7z-gi-I7T"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Unlink">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -132,6 +142,12 @@
                             <constraint firstItem="Okd-bq-csq" firstAttribute="leading" secondItem="9kX-lM-uKU" secondAttribute="leading" type="default" id="yA4-Ij-AWa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="BcR-ar-PO0" id="N3i-kg-Zy1"/>
+                        <outlet property="linkWithDropboxButton" destination="Okd-bq-csq" id="lfQ-w0-SVr"/>
+                        <outlet property="saveToDropboxButton" destination="Sqd-ZJ-zrT" id="SxT-Nk-TPh"/>
+                        <outlet property="unlinkButton" destination="9kX-lM-uKU" id="dep-qb-GfN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GvM-TZ-7eF" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="fX7-Zo-h7F" userLabel="Exit" sceneMemberID="exit"/>
@@ -169,6 +185,33 @@
             <point key="canvasLocation" x="1761" y="46"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TDAddNoteViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TDAddNoteViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didFinishInterfacingWithDropBox:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="outlet" name="textView" candidateClass="UITextView"/>
+            </relationships>
+        </class>
+        <class className="TDDropBoxViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TDDropBoxViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="linkWithDropboxButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="saveToDropboxButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="unlinkButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="TDMyNotesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TDMyNotesViewController.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
