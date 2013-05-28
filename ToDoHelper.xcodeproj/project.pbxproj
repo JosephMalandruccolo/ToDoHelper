@@ -21,6 +21,7 @@
 		3F116A61175436EB009CCA32 /* TDMyNotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F116A60175436EB009CCA32 /* TDMyNotesViewController.m */; };
 		3F116A66175439CF009CCA32 /* ComposeNoteAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F116A65175439CF009CCA32 /* ComposeNoteAccessoryView.xib */; };
 		3F116A6A17543DFE009CCA32 /* TDComposeNoteToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F116A6917543DFE009CCA32 /* TDComposeNoteToolbar.m */; };
+		3F116A6C17544690009CCA32 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A6B17544690009CCA32 /* dropbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		3F116A65175439CF009CCA32 /* ComposeNoteAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComposeNoteAccessoryView.xib; path = View/ComposeNoteAccessoryView.xib; sourceTree = "<group>"; };
 		3F116A6817543DFE009CCA32 /* TDComposeNoteToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComposeNoteToolbar.h; path = View/TDComposeNoteToolbar.h; sourceTree = "<group>"; };
 		3F116A6917543DFE009CCA32 /* TDComposeNoteToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDComposeNoteToolbar.m; path = View/TDComposeNoteToolbar.m; sourceTree = "<group>"; };
+		3F116A6B17544690009CCA32 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dropbox.framework; path = ToDoHelper/dropbox.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				3F116A371754138E009CCA32 /* UIKit.framework in Frameworks */,
 				3F116A391754138E009CCA32 /* Foundation.framework in Frameworks */,
 				3F116A3B1754138E009CCA32 /* CoreGraphics.framework in Frameworks */,
+				3F116A6C17544690009CCA32 /* dropbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +84,7 @@
 		3F116A351754138E009CCA32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F116A6B17544690009CCA32 /* dropbox.framework */,
 				3F116A361754138E009CCA32 /* UIKit.framework */,
 				3F116A381754138E009CCA32 /* Foundation.framework */,
 				3F116A3A1754138E009CCA32 /* CoreGraphics.framework */,
@@ -293,6 +297,10 @@
 		3F116A571754138E009CCA32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ToDoHelper\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToDoHelper/ToDoHelper-Prefix.pch";
 				INFOPLIST_FILE = "ToDoHelper/ToDoHelper-Info.plist";
@@ -304,6 +312,10 @@
 		3F116A581754138E009CCA32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ToDoHelper\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToDoHelper/ToDoHelper-Prefix.pch";
 				INFOPLIST_FILE = "ToDoHelper/ToDoHelper-Info.plist";
