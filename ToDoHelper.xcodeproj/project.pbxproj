@@ -22,6 +22,11 @@
 		3F116A66175439CF009CCA32 /* ComposeNoteAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F116A65175439CF009CCA32 /* ComposeNoteAccessoryView.xib */; };
 		3F116A6A17543DFE009CCA32 /* TDComposeNoteToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F116A6917543DFE009CCA32 /* TDComposeNoteToolbar.m */; };
 		3F116A6C17544690009CCA32 /* dropbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A6B17544690009CCA32 /* dropbox.framework */; };
+		3F116A6F17544FA8009CCA32 /* TDDropBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F116A6E17544FA8009CCA32 /* TDDropBoxViewController.m */; };
+		3F116A7117545264009CCA32 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A7017545264009CCA32 /* CFNetwork.framework */; };
+		3F116A731754529E009CCA32 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A721754529E009CCA32 /* Security.framework */; };
+		3F116A75175452A9009CCA32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A74175452A9009CCA32 /* SystemConfiguration.framework */; };
+		3F116A77175452B3009CCA32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A76175452B3009CCA32 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +52,12 @@
 		3F116A6817543DFE009CCA32 /* TDComposeNoteToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComposeNoteToolbar.h; path = View/TDComposeNoteToolbar.h; sourceTree = "<group>"; };
 		3F116A6917543DFE009CCA32 /* TDComposeNoteToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDComposeNoteToolbar.m; path = View/TDComposeNoteToolbar.m; sourceTree = "<group>"; };
 		3F116A6B17544690009CCA32 /* dropbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dropbox.framework; path = ToDoHelper/dropbox.framework; sourceTree = "<group>"; };
+		3F116A6D17544FA8009CCA32 /* TDDropBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDropBoxViewController.h; path = ViewControllers/TDDropBoxViewController.h; sourceTree = "<group>"; };
+		3F116A6E17544FA8009CCA32 /* TDDropBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDropBoxViewController.m; path = ViewControllers/TDDropBoxViewController.m; sourceTree = "<group>"; };
+		3F116A7017545264009CCA32 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		3F116A721754529E009CCA32 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3F116A74175452A9009CCA32 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3F116A76175452B3009CCA32 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +65,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F116A77175452B3009CCA32 /* QuartzCore.framework in Frameworks */,
+				3F116A75175452A9009CCA32 /* SystemConfiguration.framework in Frameworks */,
+				3F116A731754529E009CCA32 /* Security.framework in Frameworks */,
+				3F116A7117545264009CCA32 /* CFNetwork.framework in Frameworks */,
 				3F116A371754138E009CCA32 /* UIKit.framework in Frameworks */,
 				3F116A391754138E009CCA32 /* Foundation.framework in Frameworks */,
 				3F116A3B1754138E009CCA32 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +82,9 @@
 		3F116A2A1754138E009CCA32 = {
 			isa = PBXGroup;
 			children = (
+				3F116A76175452B3009CCA32 /* QuartzCore.framework */,
+				3F116A74175452A9009CCA32 /* SystemConfiguration.framework */,
+				3F116A721754529E009CCA32 /* Security.framework */,
 				3F116A3C1754138E009CCA32 /* ToDoHelper */,
 				3F116A351754138E009CCA32 /* Frameworks */,
 				3F116A341754138E009CCA32 /* Products */,
@@ -84,6 +102,7 @@
 		3F116A351754138E009CCA32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F116A7017545264009CCA32 /* CFNetwork.framework */,
 				3F116A6B17544690009CCA32 /* dropbox.framework */,
 				3F116A361754138E009CCA32 /* UIKit.framework */,
 				3F116A381754138E009CCA32 /* Foundation.framework */,
@@ -126,6 +145,8 @@
 				3F116A5C17543693009CCA32 /* TDAddNoteViewController.m */,
 				3F116A5F175436EB009CCA32 /* TDMyNotesViewController.h */,
 				3F116A60175436EB009CCA32 /* TDMyNotesViewController.m */,
+				3F116A6D17544FA8009CCA32 /* TDDropBoxViewController.h */,
+				3F116A6E17544FA8009CCA32 /* TDDropBoxViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -213,6 +234,7 @@
 				3F116A5D17543693009CCA32 /* TDAddNoteViewController.m in Sources */,
 				3F116A61175436EB009CCA32 /* TDMyNotesViewController.m in Sources */,
 				3F116A6A17543DFE009CCA32 /* TDComposeNoteToolbar.m in Sources */,
+				3F116A6F17544FA8009CCA32 /* TDDropBoxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

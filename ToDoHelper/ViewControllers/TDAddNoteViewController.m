@@ -6,6 +6,11 @@
 //  Copyright (c) 2013 Joseph Malandruccolo. All rights reserved.
 //
 
+
+NSString * const    kExportSegueIdentifier = @"export note segue";
+
+
+
 #import "TDAddNoteViewController.h"
 #import "TDComposeNoteToolbar.h"
 
@@ -38,6 +43,21 @@
 }
 
 
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:kExportSegueIdentifier]) {
+        //  handle the export segue
+    }
+}
+
+
+- (IBAction)didFinishInterfacingWithDropBox:(UIStoryboardSegue*)segue
+{
+    //  do nothing
+}
+
+
 #pragma mark - IBAction
 - (void)doneButtonPressed:(id)sender
 {
@@ -49,5 +69,6 @@
 {
     NSLog(@"camera button pressed");
 }
+
 
 @end

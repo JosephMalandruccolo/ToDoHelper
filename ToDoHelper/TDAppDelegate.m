@@ -7,12 +7,20 @@
 //
 
 #import "TDAppDelegate.h"
+#import <dropbox/dropbox.h>
 
 @implementation TDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    
+    DBAccountManager *accountMgr = [[DBAccountManager alloc] initWithAppKey:@"njv5kl0c55uxdt3" secret:@"p8gvmu0wj79dhkg"];
+    [DBAccountManager setSharedManager:accountMgr];
+    
+    
+    
     return YES;
 }
 							
