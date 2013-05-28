@@ -31,32 +31,33 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIToolbar" id="70868377">
+			<object class="IBUIToolbar" id="329696613">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<string key="NSFrameSize">{320, 44}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<array class="NSMutableArray" key="IBUIItems">
-					<object class="IBUIBarButtonItem" id="727757970">
+					<object class="IBUIBarButtonItem" id="386170850">
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIStyle">1</int>
-						<reference key="IBUIToolbar" ref="70868377"/>
+						<reference key="IBUIToolbar" ref="329696613"/>
 						<int key="IBUISystemItemIdentifier">15</int>
 					</object>
-					<object class="IBUIBarButtonItem" id="135403124">
+					<object class="IBUIBarButtonItem" id="78158903">
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<reference key="IBUIToolbar" ref="70868377"/>
+						<reference key="IBUIToolbar" ref="329696613"/>
 						<int key="IBUISystemItemIdentifier">5</int>
 					</object>
-					<object class="IBUIBarButtonItem" id="391882321">
+					<object class="IBUIBarButtonItem" id="706198074">
+						<string key="IBUITitle">Done</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIStyle">1</int>
-						<reference key="IBUIToolbar" ref="70868377"/>
-						<int key="IBUISystemItemIdentifier">0</int>
+						<reference key="IBUIToolbar" ref="329696613"/>
 					</object>
 				</array>
 			</object>
@@ -66,16 +67,16 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">doneButton</string>
-						<reference key="source" ref="70868377"/>
-						<reference key="destination" ref="391882321"/>
+						<reference key="source" ref="329696613"/>
+						<reference key="destination" ref="706198074"/>
 					</object>
 					<int key="connectionID">20</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">cameraButton</string>
-						<reference key="source" ref="70868377"/>
-						<reference key="destination" ref="727757970"/>
+						<reference key="source" ref="329696613"/>
+						<reference key="destination" ref="386170850"/>
 					</object>
 					<int key="connectionID">21</int>
 				</object>
@@ -101,28 +102,28 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
-						<reference key="object" ref="70868377"/>
+						<reference key="object" ref="329696613"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="727757970"/>
-							<reference ref="391882321"/>
-							<reference ref="135403124"/>
+							<reference ref="386170850"/>
+							<reference ref="706198074"/>
+							<reference ref="78158903"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="727757970"/>
-						<reference key="parent" ref="70868377"/>
+						<reference key="object" ref="386170850"/>
+						<reference key="parent" ref="329696613"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="391882321"/>
-						<reference key="parent" ref="70868377"/>
+						<reference key="object" ref="706198074"/>
+						<reference key="parent" ref="329696613"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">19</int>
-						<reference key="object" ref="135403124"/>
-						<reference key="parent" ref="70868377"/>
+						<reference key="object" ref="78158903"/>
+						<reference key="parent" ref="329696613"/>
 					</object>
 				</array>
 			</object>

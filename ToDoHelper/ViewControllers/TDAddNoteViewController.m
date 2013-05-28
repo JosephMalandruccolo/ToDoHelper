@@ -18,6 +18,7 @@
 @implementation TDAddNoteViewController
 
 
+#pragma mark - life cycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,7 +41,7 @@
 #pragma mark - IBAction
 - (void)doneButtonPressed:(id)sender
 {
-    NSLog(@"done button pressed");
+    [self.textView resignFirstResponder];
 }
 
 

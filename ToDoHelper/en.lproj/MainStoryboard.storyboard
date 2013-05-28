@@ -43,6 +43,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add a Note" id="844-yh-iOF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="DaZ-ZL-VmP"/>
                         <barButtonItem key="rightBarButtonItem" title="My Notes" id="nsx-YJ-n2R">
                             <connections>
                                 <segue destination="vCw-vZ-NHO" kind="push" id="0ma-QY-gmo"/>
