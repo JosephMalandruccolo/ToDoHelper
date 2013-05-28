@@ -9,6 +9,7 @@
 #import "TDDropBoxViewController.h"
 #import <dropbox/dropbox.h>
 #import <QuartzCore/QuartzCore.h>
+#import <EventKit/EventKit.h>
 
 @interface TDDropBoxViewController ()
 
@@ -25,7 +26,7 @@
 @implementation TDDropBoxViewController
 
 
-//  TODO: implement an nsarray and secure coding to store file names for retrieval
+//  TODO: implement an nsarray and secure coding to store file names for retrieval OR simple get request from DB
 
 #pragma mark - life cycle
 - (void)viewDidLoad
@@ -78,6 +79,8 @@
         DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
         [file writeString:self.notePayload error:nil];
         
+        [self setReminderIfConditionMetInNoteText:self.notePayload inFile:filename];
+        
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -125,6 +128,7 @@
     }
 }
 
+
 - (void)initializeButtonAppearance:(UIButton*)btn
 {
     //  make a custom button look like a default button
@@ -138,6 +142,48 @@
     [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
     
 }
+
+
+#pragma mark - EventKit methods and helpers
+- (void) setReminderIfConditionMetInNoteText:(NSString*)noteText inFile:(NSString*)filename
+{
+    
+    NSString *textCopyWithoutWhitespace = [noteText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSString *triggeringPrefix = @"TODO";
+    
+    if (textCopyWithoutWhitespace.length < triggeringPrefix.length) {
+        //  note cannot have the triggering prefix
+        return;
+    }
+    
+    
+    NSString *candidatePrefix = [textCopyWithoutWhitespace substringToIndex:triggeringPrefix.length];
+    
+    if ([candidatePrefix isEqualToString:triggeringPrefix]) {
+        //  set reminder in event kit
+        EKEventStore *eventStore = [[EKEventStore alloc] init];
+        [eventStore requestAccessToEntityType:EKEntityTypeReminder completion:^(BOOL granted, NSError *error) {
+            
+            if (!granted) {
+                NSLog(@"access to reminders not granted");
+            }
+            else {
+                
+                NSLog(@"saving reminder");
+                EKReminder *reminder = [EKReminder reminderWithEventStore:eventStore];
+                reminder.title = [NSString stringWithFormat:@"Review note named: %@ in Dropbox", filename];
+                reminder.calendar = [eventStore defaultCalendarForNewReminders];
+                NSError *error;
+                [eventStore saveReminder:reminder commit:YES error:&error];
+                
+            }
+        }];
+    }
+}
+
+
+
 
 
 @end

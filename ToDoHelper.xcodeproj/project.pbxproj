@@ -27,6 +27,7 @@
 		3F116A731754529E009CCA32 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A721754529E009CCA32 /* Security.framework */; };
 		3F116A75175452A9009CCA32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A74175452A9009CCA32 /* SystemConfiguration.framework */; };
 		3F116A77175452B3009CCA32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A76175452B3009CCA32 /* QuartzCore.framework */; };
+		3FE0581617551B48001AB8B5 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE0581517551B48001AB8B5 /* EventKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		3F116A721754529E009CCA32 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F116A74175452A9009CCA32 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F116A76175452B3009CCA32 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3FE0581517551B48001AB8B5 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE0581617551B48001AB8B5 /* EventKit.framework in Frameworks */,
 				3F116A77175452B3009CCA32 /* QuartzCore.framework in Frameworks */,
 				3F116A75175452A9009CCA32 /* SystemConfiguration.framework in Frameworks */,
 				3F116A731754529E009CCA32 /* Security.framework in Frameworks */,
@@ -99,6 +102,7 @@
 		3F116A351754138E009CCA32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3FE0581517551B48001AB8B5 /* EventKit.framework */,
 				3F116A76175452B3009CCA32 /* QuartzCore.framework */,
 				3F116A74175452A9009CCA32 /* SystemConfiguration.framework */,
 				3F116A721754529E009CCA32 /* Security.framework */,
@@ -365,6 +369,7 @@
 				3F116A581754138E009CCA32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
