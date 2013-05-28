@@ -82,9 +82,6 @@
 		3F116A2A1754138E009CCA32 = {
 			isa = PBXGroup;
 			children = (
-				3F116A76175452B3009CCA32 /* QuartzCore.framework */,
-				3F116A74175452A9009CCA32 /* SystemConfiguration.framework */,
-				3F116A721754529E009CCA32 /* Security.framework */,
 				3F116A3C1754138E009CCA32 /* ToDoHelper */,
 				3F116A351754138E009CCA32 /* Frameworks */,
 				3F116A341754138E009CCA32 /* Products */,
@@ -102,6 +99,9 @@
 		3F116A351754138E009CCA32 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F116A76175452B3009CCA32 /* QuartzCore.framework */,
+				3F116A74175452A9009CCA32 /* SystemConfiguration.framework */,
+				3F116A721754529E009CCA32 /* Security.framework */,
 				3F116A7017545264009CCA32 /* CFNetwork.framework */,
 				3F116A6B17544690009CCA32 /* dropbox.framework */,
 				3F116A361754138E009CCA32 /* UIKit.framework */,

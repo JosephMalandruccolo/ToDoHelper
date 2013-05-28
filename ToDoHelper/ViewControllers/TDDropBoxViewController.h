@@ -10,4 +10,6 @@
 
 @interface TDDropBoxViewController : UIViewController
 
+@property (strong, nonatomic) NSString *notePayload;
+
 @end

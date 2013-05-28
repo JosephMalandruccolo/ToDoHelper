@@ -13,6 +13,7 @@ NSString * const    kExportSegueIdentifier = @"export note segue";
 
 #import "TDAddNoteViewController.h"
 #import "TDComposeNoteToolbar.h"
+#import "TDDropBoxViewController.h"
 
 @interface TDAddNoteViewController ()
 
@@ -40,6 +41,10 @@ NSString * const    kExportSegueIdentifier = @"export note segue";
     composeNoteAccessoryView.cameraButton.action = @selector(cameraButtonPressed:);
     
     self.textView.inputAccessoryView = composeNoteAccessoryView;
+    
+    
+    //  prep the text view
+    self.textView.text = @"Start typing...";
 }
 
 
@@ -47,7 +52,9 @@ NSString * const    kExportSegueIdentifier = @"export note segue";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:kExportSegueIdentifier]) {
-        //  handle the export segue
+        TDDropBoxViewController *destinationVC = [segue destinationViewController];
+        NSLog(@"setting text as: %@", self.textView.text);
+        [destinationVC setNotePayload:self.textView.text];
     }
 }
 
