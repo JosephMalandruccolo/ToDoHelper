@@ -25,6 +25,8 @@
 @implementation TDDropBoxViewController
 
 
+//  TODO: implement an nsarray and secure coding to store file names for retrieval
+
 #pragma mark - life cycle
 - (void)viewDidLoad
 {
