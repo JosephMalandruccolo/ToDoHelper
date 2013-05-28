@@ -72,10 +72,19 @@
         [filename appendString:@".txt"];
         
         //  dropbox api
-        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:account];
-        [DBFilesystem setSharedFilesystem:filesystem];
+        DBFilesystem *filesystem;
+        if ([DBFilesystem sharedFilesystem]) {
+            filesystem = [DBFilesystem sharedFilesystem];
+        }
+        else {
+            filesystem = [[DBFilesystem alloc] initWithAccount:account];
+            assert(filesystem);
+            [DBFilesystem setSharedFilesystem:filesystem];
+        }
+        
         
         DBPath *newPath = [[DBPath root] childPath:filename];
+        NSLog(@"Writing to path: %@", newPath);
         DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
         [file writeString:self.notePayload error:nil];
         

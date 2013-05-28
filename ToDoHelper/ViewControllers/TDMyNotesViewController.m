@@ -7,21 +7,18 @@
 //
 
 
-NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
+static NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
 
 
 #import "TDMyNotesViewController.h"
+#import "TDNotePreviewCell.h"
 
 @interface TDMyNotesViewController ()
 
-@property (nonatomic, retain) DBFilesystem *filesystem;
+@property (nonatomic) DBFilesystem *filesystem;
 @property (nonatomic, retain) DBPath *root;
-@property (nonatomic, retain) NSMutableArray *contents;
-@property (nonatomic, assign) BOOL creatingFolder;
-@property (nonatomic, retain) DBPath *fromPath;
-@property (nonatomic, retain) UITableViewCell *loadingCell;
 @property (nonatomic, assign) BOOL loadingFiles;
-@property (nonatomic, assign, getter=isMoving) BOOL moving;
+@property (nonatomic, retain) NSMutableArray *contents;
 
 @end
 
@@ -29,37 +26,49 @@ NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
 
 
 #pragma mark - life cycle
-- (id)initWithFilesystem:(DBFilesystem *)filesystem root:(DBPath *)root {
-	if ((self = [super init])) {
-		self.filesystem = filesystem;
-		self.root = root;
-		self.navigationItem.title = [root isEqual:[DBPath root]] ? @"Dropbox" : [root name];
-	}
-	return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSLog(@"viewDidLoad before shared file system");
+    
+    if ([DBFilesystem sharedFilesystem]) {
+        _filesystem = [DBFilesystem sharedFilesystem];
+        _root = [DBPath root];
+    }
+    
+    NSLog(@"view did load after shared file system");
+    
+    if (!self.filesystem) {
+        
+        DBAccount *appAccount = [DBAccountManager sharedManager].linkedAccount;
+        DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:appAccount];
+        
+        _filesystem = filesystem;
+        _root = [DBPath root];
+    }
+    
+    
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
+    NSLog(@"viewWillAppear called");
+    
 	[super viewWillAppear:animated];
     
 	__weak TDMyNotesViewController *weakSelf = self;
-	[_filesystem addObserver:self block:^() { [weakSelf reload]; }];
-	[_filesystem addObserver:self forPathAndChildren:self.root block:^() { [weakSelf loadFiles]; }];
+	[self.filesystem addObserver:self block:^() { [weakSelf reload]; }];
+	[self.filesystem addObserver:self forPathAndChildren:self.root block:^() { [weakSelf loadFiles]; }];
 	[self.navigationController setToolbarHidden:NO];
 	[self loadFiles];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
 	[super viewWillDisappear:animated];
 	
 	[_filesystem removeObserver:self];
@@ -70,66 +79,28 @@ NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    if (!_contents) return 1;
+    NSLog(@"count of notes: %lu", (unsigned long)[_contents count]);
+	return [_contents count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    TDNotePreviewCell *cell = (TDNotePreviewCell*)[tableView dequeueReusableCellWithIdentifier:kNotePreviewCellIdentifier forIndexPath:indexPath];
+    
+    DBFileInfo *info = [_contents objectAtIndex:[indexPath row]];
+	cell.filenameLabel.text = [info.path name];
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -152,16 +123,16 @@ NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
 }
 
 - (void)loadFiles {
-	if (_loadingFiles) return;
-	_loadingFiles = YES;
+	if (self.loadingFiles) return;
+	self.loadingFiles = YES;
     
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^() {
-		NSArray *immContents = [_filesystem listFolder:_root error:nil];
+		NSArray *immContents = [self.filesystem listFolder:self.root error:nil];
 		NSMutableArray *mContents = [NSMutableArray arrayWithArray:immContents];
 		[mContents sortUsingFunction:sortFileInfos context:NULL];
 		dispatch_async(dispatch_get_main_queue(), ^() {
 			self.contents = mContents;
-			_loadingFiles = NO;
+			self.loadingFiles = NO;
 			[self reload];
 		});
 	});

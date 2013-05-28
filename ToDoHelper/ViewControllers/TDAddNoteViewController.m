@@ -15,6 +15,7 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 #import "TDAddNoteViewController.h"
 #import "TDComposeNoteToolbar.h"
 #import "TDDropBoxViewController.h"
+#import "TDMyNotesViewController.h"
 
 @interface TDAddNoteViewController ()
 
@@ -53,19 +54,25 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:kExportSegueIdentifier]) {
+        
         TDDropBoxViewController *destinationVC = [segue destinationViewController];
         if (self.textView.text) {
+            
             NSLog(@"setting text as: %@", self.textView.text);
             [destinationVC setNotePayload:self.textView.text];
+            
         }
         else {
             //  set payload as a single space
             [destinationVC setNotePayload:@" "];
         }
+        
     }
     else if ([[segue identifier] isEqualToString:kViewAllNotesSegueIdentifier]) {
-        //  do nothing
+        
+                
     }
+    
 }
 
 

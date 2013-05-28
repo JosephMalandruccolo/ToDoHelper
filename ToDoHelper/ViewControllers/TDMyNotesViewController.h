@@ -11,9 +11,5 @@
 
 @interface TDMyNotesViewController : UITableViewController
 
-- (id)initWithFilesystem:(DBFilesystem *)filesystem root:(DBPath *)root;
-
-@property (nonatomic, readonly) DBAccount *account;
-
 
 @end
