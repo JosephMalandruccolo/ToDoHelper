@@ -11,5 +11,6 @@
 @interface TDDropBoxViewController : UIViewController
 
 @property (strong, nonatomic) NSString *notePayload;
+@property (strong, nonatomic) UIImage *imagePayload;
 
 @end

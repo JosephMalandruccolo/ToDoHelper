@@ -16,6 +16,7 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 #import "TDComposeNoteToolbar.h"
 #import "TDDropBoxViewController.h"
 #import "TDMyNotesViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface TDAddNoteViewController ()
 
@@ -57,6 +58,7 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
     if ([[segue identifier] isEqualToString:kExportSegueIdentifier]) {
         
         TDDropBoxViewController *destinationVC = [segue destinationViewController];
+        //  set the text payload
         if (self.textView.text) {
             
             NSLog(@"setting text as: %@", self.textView.text);
@@ -64,14 +66,21 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
             
         }
         else {
-            //  set payload as a single space
             [destinationVC setNotePayload:@" "];
+        }
+        
+        
+        //  set the image payload
+        if (self.imageView.image) {
+            [destinationVC setImagePayload:[self blendImageAndText]];
+        }
+        else {
+            [destinationVC setImagePayload:nil];
         }
         
     }
     else if ([[segue identifier] isEqualToString:kViewAllNotesSegueIdentifier]) {
-        
-                
+        //  do nothing
     }
     
 }
@@ -81,6 +90,10 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 - (IBAction)didFinishInterfacingWithDropBox:(UIStoryboardSegue*)segue
 {
     //  do nothing
+    self.imageView.image = nil;
+    self.textView.text = @"Start typing...";
+    [self.imageView setNeedsDisplay];
+    [self.textView setNeedsDisplay];
 }
 
 
@@ -126,7 +139,20 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 }
 
 
-
+#pragma mark - private helpers
+- (UIImage*)blendImageAndText
+{
+    UIGraphicsBeginImageContextWithOptions(self.imageView.image.size, NO, 0.0);
+    
+    [self.imageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [self.textView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *blendedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return blendedImage;
+    
+}
 
 
 

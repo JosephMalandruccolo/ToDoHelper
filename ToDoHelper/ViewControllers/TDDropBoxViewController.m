@@ -69,7 +69,7 @@
         [formatter setDateFormat:@"MM-dd-yyyy-HH:mm:ss"];
         NSMutableString *filename = [[NSMutableString alloc] init];
         [filename appendString:[formatter stringFromDate:[NSDate date]]];
-        [filename appendString:@".txt"];
+        
         
         //  dropbox api
         DBFilesystem *filesystem;
@@ -83,11 +83,29 @@
         }
         
         
-        DBPath *newPath = [[DBPath root] childPath:filename];
-        NSLog(@"Writing to path: %@", newPath);
-        DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
-        [file writeString:self.notePayload error:nil];
-        
+        //  this line will trigger as notePayload is always set, sometimes the image payload is also set
+        if (self.imagePayload) {
+            
+            [filename appendString:@".png"];
+            
+            DBPath *newPath = [[DBPath root] childPath:filename];
+            NSLog(@"Writing to path: %@", newPath);
+            DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
+            
+            NSError *errorWithPhoto;
+            [file writeData:UIImagePNGRepresentation(self.imagePayload) error:&errorWithPhoto];
+            
+        }
+        else {
+            
+            [filename appendString:@".txt"];
+            
+            DBPath *newPath = [[DBPath root] childPath:filename];
+            NSLog(@"Writing to path: %@", newPath);
+            DBFile *file = [[DBFilesystem sharedFilesystem] createFile:newPath error:nil];
+            
+            [file writeString:self.notePayload error:nil];
+        }
         [self setReminderIfConditionMetInNoteText:self.notePayload inFile:filename];
         
     }
