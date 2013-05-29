@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TDAddNoteViewController : UIViewController
+@interface TDAddNoteViewController : UIViewController <UIImagePickerControllerDelegate>
 
 @end

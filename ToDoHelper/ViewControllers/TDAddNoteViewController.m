@@ -20,6 +20,7 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 @interface TDAddNoteViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -99,7 +100,34 @@ NSString * const    kViewAllNotesSegueIdentifier = @"see all notes segue";
 - (void)cameraButtonPressed:(id)sender
 {
     NSLog(@"camera button pressed");
+    
+    UIImagePickerController *imagePickerVC = [[UIImagePickerController alloc] init];
+    imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerVC.delegate = (id)self;
+    
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+    
 }
+
+
+#pragma mark - UIImagePickPickerViewController Delegate
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *pickedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    self.imageView.image = pickedImage;
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
 
 
 @end
