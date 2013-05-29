@@ -193,6 +193,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="filenameLabel" destination="hhD-gp-lXF" id="bLx-eZ-awH"/>
+                                    <segue destination="acI-KV-Crl" kind="push" identifier="read note segue" id="dvF-kx-TPo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -206,6 +207,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQx-46-VUz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1825" y="46"/>
+        </scene>
+        <!--Read Only View Controller - Read Notes-->
+        <scene sceneID="4jp-5p-q65">
+            <objects>
+                <viewController id="acI-KV-Crl" customClass="TDReadOnlyViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8Cs-0J-YEU">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKk-fW-DUb">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hKk-fW-DUb" firstAttribute="leading" secondItem="8Cs-0J-YEU" secondAttribute="leading" type="default" id="NbJ-bY-6qW"/>
+                            <constraint firstItem="hKk-fW-DUb" firstAttribute="trailing" secondItem="8Cs-0J-YEU" secondAttribute="trailing" type="default" id="Zpa-HV-irV"/>
+                            <constraint firstItem="hKk-fW-DUb" firstAttribute="top" secondItem="8Cs-0J-YEU" secondAttribute="top" type="default" id="abJ-8g-Be8"/>
+                            <constraint firstItem="hKk-fW-DUb" firstAttribute="bottom" secondItem="8Cs-0J-YEU" secondAttribute="bottom" type="default" id="ljV-W5-hab"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Read Notes" id="bv6-yj-ufO"/>
+                    <connections>
+                        <outlet property="noteTextView" destination="hKk-fW-DUb" id="Ngv-58-w1O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jds-zA-lQc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2286" y="46"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

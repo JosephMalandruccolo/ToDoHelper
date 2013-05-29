@@ -8,10 +8,12 @@
 
 
 static NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
+static NSString * const    kReadNoteSegue = @"read note segue";
 
 
 #import "TDMyNotesViewController.h"
 #import "TDNotePreviewCell.h"
+#import "TDReadOnlyViewController.h"
 
 @interface TDMyNotesViewController ()
 
@@ -72,6 +74,32 @@ static NSString * const    kNotePreviewCellIdentifier = @"note preview cell";
 	[super viewWillDisappear:animated];
 	
 	[_filesystem removeObserver:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:kReadNoteSegue]) {
+        
+        //  get note data
+        NSIndexPath *selectedPath = [self.tableView indexPathForSelectedRow];
+        DBFileInfo *info = [self.contents objectAtIndex:selectedPath.row];
+        NSString *filename = [info.path name];
+        NSLog(@"filename: %@", filename);
+        DBPath *existingPath = [[DBPath root] childPath:filename];
+        NSLog(@"existing path: %@", existingPath);
+        NSError *errorReading;
+        DBFile *file = [self.filesystem openFile:existingPath error:&errorReading];
+        assert(file);
+        NSError *contentReadError;
+        NSString *fileContents = [file readString:&contentReadError];
+        
+        NSLog(@"payload contents: %@", fileContents);
+        
+        //  display note data
+        TDReadOnlyViewController *desinationVC = [segue destinationViewController];
+        [desinationVC setPayload:fileContents];
+        
+    }
 }
 
 

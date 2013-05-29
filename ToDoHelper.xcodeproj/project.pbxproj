@@ -27,6 +27,7 @@
 		3F116A731754529E009CCA32 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A721754529E009CCA32 /* Security.framework */; };
 		3F116A75175452A9009CCA32 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A74175452A9009CCA32 /* SystemConfiguration.framework */; };
 		3F116A77175452B3009CCA32 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F116A76175452B3009CCA32 /* QuartzCore.framework */; };
+		3F5240F81755791C00F7BB3B /* TDReadOnlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F5240F71755791C00F7BB3B /* TDReadOnlyViewController.m */; };
 		3FE0581617551B48001AB8B5 /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE0581517551B48001AB8B5 /* EventKit.framework */; };
 		3FE0581917552012001AB8B5 /* TDNotePreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0581817552012001AB8B5 /* TDNotePreviewCell.m */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,8 @@
 		3F116A721754529E009CCA32 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3F116A74175452A9009CCA32 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F116A76175452B3009CCA32 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3F5240F61755791C00F7BB3B /* TDReadOnlyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReadOnlyViewController.h; path = ViewControllers/TDReadOnlyViewController.h; sourceTree = "<group>"; };
+		3F5240F71755791C00F7BB3B /* TDReadOnlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReadOnlyViewController.m; path = ViewControllers/TDReadOnlyViewController.m; sourceTree = "<group>"; };
 		3FE0581517551B48001AB8B5 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		3FE0581717552012001AB8B5 /* TDNotePreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNotePreviewCell.h; path = View/TDNotePreviewCell.h; sourceTree = "<group>"; };
 		3FE0581817552012001AB8B5 /* TDNotePreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNotePreviewCell.m; path = View/TDNotePreviewCell.m; sourceTree = "<group>"; };
@@ -154,6 +157,8 @@
 				3F116A60175436EB009CCA32 /* TDMyNotesViewController.m */,
 				3F116A6D17544FA8009CCA32 /* TDDropBoxViewController.h */,
 				3F116A6E17544FA8009CCA32 /* TDDropBoxViewController.m */,
+				3F5240F61755791C00F7BB3B /* TDReadOnlyViewController.h */,
+				3F5240F71755791C00F7BB3B /* TDReadOnlyViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 				3F116A6A17543DFE009CCA32 /* TDComposeNoteToolbar.m in Sources */,
 				3F116A6F17544FA8009CCA32 /* TDDropBoxViewController.m in Sources */,
 				3FE0581917552012001AB8B5 /* TDNotePreviewCell.m in Sources */,
+				3F5240F81755791C00F7BB3B /* TDReadOnlyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
